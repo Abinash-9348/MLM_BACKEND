@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { CompanyService } from "../services/company.service";
-import { CreateCompanyDto } from "../dtos/company.create.dto";
-import { UpdateCompanyDto } from "../dtos/company.update.dto";
+import { PlanService } from "../services/plan.service";
+import { CreatePlanDto } from "../dtos/plan.create.dto";
+import { UpdatePlanDto } from "../dtos/plan.update.dto";
 import { AppSuccess } from "../../utils/appSuccess";
 import { AppError } from "../../utils/appError";
 import {
@@ -11,16 +11,16 @@ import {
   SUCCESS_CODES,
   SUCCESS_MESSAGES,
 } from "../../utils/errors";
-export class CompanyController {
-  public service: CompanyService;
+export class PlanController {
+  public service: PlanService;
 
   constructor() {
-    this.service = new CompanyService();
+    this.service = new PlanService();
   }
 
   async create(req: Request, res: Response) {
     try {
-      const dto: CreateCompanyDto = req.body;
+      const dto: CreatePlanDto = req.body;
 
       const result = await this.service.create(dto);
       const response = new AppSuccess(
@@ -46,8 +46,8 @@ export class CompanyController {
     try {
       const result = await this.service.getAll();
       const response = new AppSuccess(
-        SUCCESS_CODES.COMPANY_FETCHED,
-        SUCCESS_MESSAGES.COMPANY_FETCHED,
+        SUCCESS_CODES.PLANS_FETCHED,
+        SUCCESS_MESSAGES.PLANS_FETCHED,
         HTTP_STATUS.OK,
         result
       );
@@ -69,8 +69,8 @@ export class CompanyController {
 
       const result = await this.service.getOne(id);
       const response = new AppSuccess(
-        SUCCESS_CODES.COMPANY_FETCHED,
-        SUCCESS_MESSAGES.COMPANY_FETCHED,
+        SUCCESS_CODES.PLAN_FETCHED,
+        SUCCESS_MESSAGES.PLAN_FETCHED,
         HTTP_STATUS.OK,
         result
       );
@@ -90,12 +90,12 @@ export class CompanyController {
   async update(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const dto: UpdateCompanyDto = req.body;
+      const dto: UpdatePlanDto = req.body;
 
       const result = await this.service.update(id, dto);
       const response = new AppSuccess(
-        SUCCESS_CODES.COMPANY_UPDATED,
-        SUCCESS_MESSAGES.COMPANY_UPDATED,
+        SUCCESS_CODES.PLAN_UPDATED,
+        SUCCESS_MESSAGES.PLAN_UPDATED,
         HTTP_STATUS.OK,
         result
       );
@@ -118,8 +118,8 @@ export class CompanyController {
 
       await this.service.delete(id);
       const response = new AppSuccess(
-        SUCCESS_CODES.COMPANY_DELETED,
-        SUCCESS_MESSAGES.COMPANY_DELETED,
+        SUCCESS_CODES.PLAN_DELETED,
+        SUCCESS_MESSAGES.PLAN_DELETED,
         HTTP_STATUS.OK,
         null
       );

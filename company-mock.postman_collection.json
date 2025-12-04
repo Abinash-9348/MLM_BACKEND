@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "crud",
+			"name": "plan-crud",
 			"item": [
 				{
 					"name": "get-company-id",
@@ -31,7 +31,7 @@
 					"response": []
 				},
 				{
-					"name": "create-company",
+					"name": "create-plan",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -80,25 +80,6 @@
 					"response": []
 				},
 				{
-					"name": "health-check",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:6070/healthcheck",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "6070",
-							"path": [
-								"healthcheck"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "update-company",
 					"request": {
 						"method": "PUT",
@@ -129,6 +110,134 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "company-crud1",
+			"item": [
+				{
+					"name": "get-company-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/company/api/1/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"company",
+								"api",
+								"1",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"companyName\": \"Tech Solutions Pvt Ltd\",\r\n  \"websiteUrl\": \"https://techsolutions.com\",\r\n  \"printName\": \"Tech Solutions\",\r\n  \"billPrefix\": \"INV-\",\r\n  \"beginningDate\": \"2025-01-01\",\r\n  \"commencingFrom\": \"2025-02-01\",\r\n  \"addressLine1\": \"123, Green Park\",\r\n  \"addressLine2\": \"Near Central Mall\",\r\n  \"country\": \"India\",\r\n  \"state\": \"Delhi\",\r\n  \"contactNo1\": \"+91-9876543210\",\r\n  \"contactNo2\": \"+91-9123456789\",\r\n  \"email\": \"info@techsolutions.com\",\r\n  \"website\": \"https://techsolutions.com\",\r\n  \"gstNo\": \"29ABCDE1234F1Z5\",\r\n  \"panNo\": \"ABCDE1234F\",\r\n  \"vatNo\": \"VAT998877\",\r\n  \"fax\": \"011-22334455\",\r\n  \"lightLogo\": \"https://cdn.example.com/logos/light.png\",\r\n  \"darkLogo\": \"https://cdn.example.com/logos/dark.png\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/company/api/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"company",
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/company/api/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"company",
+								"api",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-company",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"country\": \"Bharat\",\r\n  \"state\": \"Odisha\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/company/api/1/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"company",
+								"api",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6070/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6070",
+					"path": [
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

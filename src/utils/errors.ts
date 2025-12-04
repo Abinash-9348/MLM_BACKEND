@@ -52,6 +52,14 @@ export const ERROR_CODES = {
   COMPANY_ALREADY_EXISTS: "COMPANY_ALREADY_EXISTS",
   INVALID_COMPANY_DATA: "INVALID_COMPANY_DATA",
 
+  //Plan
+  PLAN_NOT_FOUND: "PLAN_NOT_FOUND",
+  INVALID_PLAN_DATA: "INVALID_PLAN_DATA",
+  PLAN_CREATE_FAILED: "PLAN_CREATE_FAILED",
+  PLAN_UPDATE_FAILED: "PLAN_UPDATE_FAILED",
+  PLAN_DELETE_FAILED: "PLAN_DELETE_FAILED",
+  PLAN_ALREADY_EXISTS: "PLAN_ALREADY_EXISTS",
+
 } as const;
 
 
@@ -91,11 +99,19 @@ export const ERROR_MESSAGES = {
   CITY_ALREADY_EXISTS: "City already exists.",
   INVALID_CITY_DATA: "Invalid city data.",
 
-  //company
+  //Company
   COMPANY_NOT_FOUND: "Company not found.",
   COMPANY_ALREADY_EXISTS: "Company already exists.",
   INVALID_COMPANY_DATA: "Invalid company data or Incomplete data.",
   COMPANY_MAIL_EXIST: "Email already exists",
+
+  //Plans
+  PLAN_NOT_FOUND: "The requested plan was not found.",
+  INVALID_PLAN_DATA: "The provided plan data is invalid.",
+  PLAN_CREATE_FAILED: "Failed to create the plan.",
+  PLAN_UPDATE_FAILED: "Failed to update the plan.",
+  PLAN_DELETE_FAILED: "Failed to delete the plan.",
+  PLAN_ALREADY_EXISTS: "A plan with the same name already exists.",
 
 } as const;
 
@@ -116,6 +132,13 @@ export const SUCCESS_CODES = {
   COUNTRY_CREATED: "COUNTRY_CREATED",
   STATE_CREATED: "STATE_CREATED",
   CITY_CREATED: "CITY_CREATED",
+
+  //Plan
+  PLAN_CREATED: "PLAN_CREATED",
+  PLAN_UPDATED: "PLAN_UPDATED",
+  PLAN_DELETED: "PLAN_DELETED",
+  PLAN_FETCHED: "PLAN_FETCHED",
+  PLANS_FETCHED: "PLANS_FETCHED",
 } as const;
 
 
@@ -130,4 +153,11 @@ export const SUCCESS_MESSAGES = {
   COMPANY_FETCHED: "Company fetched successfully.",
   COMPANY_UPDATED: "Company updated successfully.",
   COMPANY_DELETED: "Company deleted successfully.",
+
+  //Plan
+  PLAN_CREATED: "Plan created successfully.",
+  PLAN_UPDATED: "Plan updated successfully.",
+  PLAN_DELETED: "Plan deleted successfully.",
+  PLAN_FETCHED: "Plan retrieved successfully.",
+  PLANS_FETCHED: "Plans retrieved successfully.",
 } as const;

@@ -2,6 +2,7 @@ import path from "path";
 import dotenv from "dotenv";
 import fs from "fs";
 import z from "zod";
+import log from "../src/utils/logger";
 
 export function loadEnv() {
   const env = process.env.NODE_ENV || "development";
@@ -9,10 +10,10 @@ export function loadEnv() {
   const envFile = path.resolve(process.cwd(), `env/.env.${env}`);
 
   if (fs.existsSync(envFile)) {
-    console.log(`➡ Loading environment: ${env}`);
+    log.info(`➡ Loading environment: ${env}`);
     dotenv.config({ path: envFile });
   } else {
-    console.warn(`⚠ .env file not found for NODE_ENV=${env}: ${envFile}`);
+    log.warn(`⚠ .env file not found for NODE_ENV=${env}: ${envFile}`);
   }
 
   const envSchema = z.object({
@@ -34,10 +35,7 @@ export function loadEnv() {
   const parsedEnv = envSchema.safeParse(process.env);
 
   if (!parsedEnv.success) {
-    console.error(
-      "❌ Invalid environment variables:",
-      parsedEnv.error.format()
-    );
+    console.error("❌ Invalid environment variables:",parsedEnv.error.format());
     process.exit(1);
   }
 

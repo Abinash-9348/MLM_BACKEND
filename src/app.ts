@@ -5,6 +5,7 @@ import { loadEnv } from "../config/loadEnv.ts";
 
 import { requestLogger } from "./utils/middleware/requestLogger.ts";
 import { companyRoutes } from "./company/routes/company.routes.ts";
+import { planRoutes } from "./plans/routes/plan.routes.ts";
 
 
 
@@ -35,6 +36,7 @@ app.get("/healthcheck", (_req, res) => {
 });
 
 // Routes
-app.use('/',companyRoutes());
+app.use('/company',companyRoutes());
+app.use('/plan',planRoutes());
 
 export default app;
