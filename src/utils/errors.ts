@@ -95,6 +95,8 @@ export const ERROR_MESSAGES = {
   COMPANY_NOT_FOUND: "Company not found.",
   COMPANY_ALREADY_EXISTS: "Company already exists.",
   INVALID_COMPANY_DATA: "Invalid company data or Incomplete data.",
+  COMPANY_MAIL_EXIST: "Email already exists",
+
 } as const;
 
 export const SUCCESS_CODES = {
