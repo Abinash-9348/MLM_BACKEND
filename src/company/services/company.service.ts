@@ -12,6 +12,17 @@ export class CompanyService {
   }
 
   async create(data: CreateCompanyDto) {
+          if (data.email) {
+    const exists = await this.repo.findByEmail(data.email);
+    
+    if (exists) {
+      throw new AppError(
+        ERROR_CODES.COMPANY_ALREADY_EXISTS,
+        ERROR_MESSAGES.COMPANY_MAIL_EXIST,
+        HTTP_STATUS.CONFLICT
+      );
+    }
+  }
   const parsedData = {
     ...data,
     beginningDate: data.beginningDate ? new Date(data.beginningDate) : undefined,
