@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/prisma/index.js";
+import { PrismaClient } from "@prisma/client";   // <-- FIXED ✔
 import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import dotenv from "dotenv";
@@ -13,13 +13,12 @@ const pool = new Pool({
 
 const adapter = new PrismaPg(pool);
 
-
+// Use correct Prisma Client
 export const prisma = new PrismaClient({ adapter });
-
 
 export const db_connect = async () => {
   try {
-  await prisma.$connect();
+    await prisma.$connect();
     logger.info("Connected to PostgreSQL using Prisma v7 🔥");
   } catch (err) {
     console.error("Database connection failed ❌", err);
