@@ -1,6 +1,6 @@
-import dev from "./dev.config.ts";
-import prod from "./prod.config.ts";
-import test from "./stag.config.ts";
+import dev from "./dev.config";
+import prod from "./prod.config";
+import test from "./stag.config";
 
 const env = process.env.NODE_ENV || "development";
 

@@ -1,6 +1,6 @@
 
 import { Request, Response, NextFunction } from "express";
-import log from "../logger.ts";
+import log from "../logger";
 
 export function requestLogger(req: Request, res: Response, next: NextFunction) {
   const start = process.hrtime();

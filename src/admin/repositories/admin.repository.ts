@@ -1,10 +1,10 @@
-import { prisma } from "../../../db/prisma";
+import { prisma } from "../../../db/connectDB";
 import { Prisma } from "@prisma/client";
 
 export class AdminRepository {
   async create(data: Prisma.AdminCreateInput) {
     return prisma.admin.create({ data });
-  } 
+  }
 
   async findAll() {
     return prisma.admin.findMany();
@@ -39,9 +39,9 @@ export class AdminRepository {
   }
 
   async findCompanyById(id: number) {
-  return prisma.company.findUnique({
-    where: { id },
-  });
-}
+    return prisma.company.findUnique({
+      where: { id },
+    });
+  }
 
 }

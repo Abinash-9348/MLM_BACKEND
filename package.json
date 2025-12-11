@@ -17,11 +17,13 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@ljharb/tsconfig": "^0.3.2",
     "@types/bcrypt": "^6.0.0",
     "@types/config": "^3.3.5",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
+    "@types/joi": "^17.2.2",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/lodash": "^4.17.21",
     "@types/node": "^24.10.1",
@@ -31,7 +33,8 @@
     "ts-node-dev": "^2.0.0"
   },
   "dependencies": {
-    "@prisma/client": "^6.3.1",
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
@@ -42,12 +45,13 @@
     "dotenv": "^17.2.3",
     "dotenv-flow": "^4.1.0",
     "express": "^5.1.0",
+    "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
     "lodash": "^4.17.21",
     "pg": "^8.16.3",
     "pino": "^10.1.0",
     "pino-pretty": "^13.1.2",
-    "prisma": "^6.3.1",
+    "prisma": "^7.1.0",
     "reflect-metadata": "^0.2.2",
     "response-time": "^2.3.4",
     "zod": "^4.1.13"

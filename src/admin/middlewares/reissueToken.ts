@@ -1,19 +1,19 @@
 import { verifyJwt, signJwt } from "../../utils/jwt.utils";
 import config from "../../../config/index";
-import { prisma } from "../../../db/prisma";
+import { prisma } from "../../../db/connectDB";
 
 export async function reIssueAccessToken(refreshToken: string) {
   const { decoded } = verifyJwt(refreshToken, "REFRESH_TOKEN_PUBLIC_KEY");
 
-  
+
   if (!decoded || typeof decoded === "string") return false;
 
-  const sessionId = decoded.session;   
+  const sessionId = decoded.session;
 
   if (!sessionId) return false;
 
   const session = await prisma.adminSession.findUnique({
-    where: { id: sessionId },   
+    where: { id: sessionId },
   });
 
   if (!session || !session.valid) return false;
@@ -28,7 +28,7 @@ export async function reIssueAccessToken(refreshToken: string) {
     {
       id: user.id,
       email: user.email,
-      session: session.id,   
+      session: session.id,
     },
     "ACCESS_TOKEN_PRIVATE_KEY",
     { expiresIn: config.ACCESS_TOKEN_TTL }

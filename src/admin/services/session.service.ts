@@ -20,7 +20,7 @@ export class AdminSessionService {
     this.adminRepo = new AdminRepository();
   }
 
-  async createSession(data:CreateSessionDto,ip:string,userAgent:string) {
+  async createSession(data: CreateSessionDto, ip: string, userAgent: string) {
     const { email, password } = data;
 
     const exist = await this.adminRepo.findByEmail(data.email);
@@ -32,55 +32,55 @@ export class AdminSessionService {
       );
     }
     // log.info(exist);
-    const isValid = await validatePassword(password,exist.password)
+    const isValid = await validatePassword(password, exist.password || "");
 
-      if (!isValid) {
-    throw new AppError(
-      ERROR_CODES.USER_NOT_FOUND,
-      ERROR_MESSAGES.USER_NOT_FOUND,
-      HTTP_STATUS.NOT_FOUND
-    ); 
-  }
+    if (!isValid) {
+      throw new AppError(
+        ERROR_CODES.USER_NOT_FOUND,
+        ERROR_MESSAGES.USER_NOT_FOUND,
+        HTTP_STATUS.NOT_FOUND
+      );
+    }
 
-   const session = await this.sessionRepo.createSession(exist.id,ip,userAgent);
+    const session = await this.sessionRepo.createSession(exist.id, ip || "", userAgent);
 
-   if(!session){
-     throw new AppError(
-      ERROR_CODES.AUTH_FAILED,
-      ERROR_MESSAGES.AUTH_FAILED,
-      HTTP_STATUS.UNAUTHORIZED
-    ); 
-   }
+    if (!session) {
+      throw new AppError(
+        ERROR_CODES.AUTH_FAILED,
+        ERROR_MESSAGES.AUTH_FAILED,
+        HTTP_STATUS.UNAUTHORIZED
+      );
+    }
 
-  //create accessToken and refreshToken
+    //create accessToken and refreshToken
 
     const accessToken = signJwt(
-    { ...exist, session: session.id },
-    "ACCESS_TOKEN_PRIVATE_KEY",
-    { expiresIn: config.ACCESS_TOKEN_TTL} 
-  );
+      { ...exist, session: session.id },
+      "ACCESS_TOKEN_PRIVATE_KEY",
+      { expiresIn: config.ACCESS_TOKEN_TTL }
+    );
 
-  // create a refresh token
-  const refreshToken = signJwt(
-    { ...exist, session: session.id },
-    "REFRESH_TOKEN_PRIVATE_KEY",
-    { expiresIn: config.REFRESH_TOKEN_TTL } 
-  );
+    // create a refresh token
+    const refreshToken = signJwt(
+      { ...exist, session: session.id },
+      "REFRESH_TOKEN_PRIVATE_KEY",
+      { expiresIn: config.REFRESH_TOKEN_TTL }
+    );
 
-  
 
-  return {accessToken,refreshToken}
+
+    return { accessToken, refreshToken }
 
 
   }
 
- async  findSessions(id:number) {
-  return this.sessionRepo.findById(id);
-}
+  async findSessions(id: number) {
+    return this.sessionRepo.findById(id);
+  }
 
- async  updateSession(id:number,data:UpdateAdminSessionDto) {
-  return this.sessionRepo.update(id, data);
-}
+  async updateSession(id: number, data: UpdateAdminSessionDto) {
+    return this.sessionRepo.update(id, data);
+  }
 
 }
 

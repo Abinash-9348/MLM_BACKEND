@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { reIssueAccessToken } from './reissueToken';
 import { verifyJwt } from '../../utils/jwt.utils';
-import { prisma } from '../../../db/prisma'; 
+import { prisma } from '../../../db/connectDB';
 import { parseTTL } from '../../utils/parseTTL';
 import config from '../../../config/index';
+import { JwtPayload } from 'jsonwebtoken';
 
 const deserializeAdmin = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -35,11 +36,12 @@ const deserializeAdmin = async (req: Request, res: Response, next: NextFunction)
   // 2. Verify token
   const { decoded, expired } = verifyJwt(accessToken, "ACCESS_TOKEN_PUBLIC_KEY");
 
+
   // If token is valid → CHECK SESSION VALIDITY
   if (decoded) {
     // Check session in DB
     const session = await prisma.adminSession.findUnique({
-      where: { id: decoded.session }
+      where: { id: (decoded as JwtPayload).session }
     });
 
     // ❌ Session does not exist or is invalid => force logout
@@ -68,12 +70,12 @@ const deserializeAdmin = async (req: Request, res: Response, next: NextFunction)
 
       const result = verifyJwt(newAccessToken, "ACCESS_TOKEN_PUBLIC_KEY");
       if (!result.decoded) {
-  return next();
-}
+        return next();
+      }
 
       // Again check session validity
       const session = await prisma.adminSession.findUnique({
-        where: { id: result.decoded.session }
+        where: { id: (result.decoded as JwtPayload).session }
       });
 
       if (!session || !session.valid) {

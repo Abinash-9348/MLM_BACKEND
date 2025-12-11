@@ -1,12 +1,12 @@
-import { prisma } from "../../../db/prisma";
-import { Prisma} from "@prisma/client";
+import { prisma } from "../../../db/connectDB";
+import { Prisma } from "@prisma/client";
 
 
 
 
 export class CompanyRepository {
-  
-  async create(data:Prisma.CompanyCreateInput) {
+
+  async create(data: Prisma.CompanyCreateInput) {
     return prisma.company.create({ data });
   }
 
@@ -20,22 +20,22 @@ export class CompanyRepository {
     });
   }
 
-  async update(id:number,data: Prisma.CompanyUpdateInput) {
+  async update(id: number, data: Prisma.CompanyUpdateInput) {
     return prisma.company.update({
-      where: { id:id },
+      where: { id: id },
       data,
     });
   }
 
   async delete(id: number) {
     return prisma.company.delete({
-      where: { id:id },
+      where: { id: id },
     });
   }
   async findByEmail(email: string) {
-  return prisma.company.findUnique({
-    where: { email },
-  });
-}
+    return prisma.company.findUnique({
+      where: { email },
+    });
+  }
 }
 

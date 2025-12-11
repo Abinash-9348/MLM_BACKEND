@@ -1,20 +1,21 @@
 import express, { Application } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { loadEnv } from "../config/loadEnv.ts";
-import { Request,Response } from "express";
+import { loadEnv } from "../config/loadEnv";
+import { Request, Response } from "express";
 //logger
-import { requestLogger } from "./utils/middleware/requestLogger.ts";
+import { requestLogger } from "./utils/middleware/requestLogger";
 
 
 //routes
-import { companyRoutes } from "./company/routes/company.routes.ts";
-import { planRoutes } from "./plans/routes/plan.routes.ts";
-import { adminRoutes } from "./admin/routes/admin.routes.ts";
+import { companyRoutes } from "./company/routes/company.routes";
+import { planRoutes } from "./plans/routes/plan.routes";
+import { adminRoutes } from "./admin/routes/admin.routes";
+import { userRouter } from "./Users/Routes/user.routes";
 
 //middlewares
-import deserializeAdmin from "./admin/middlewares/deserializeadmin.middlewares.ts";
-import { errorHandler } from "./utils/middleware/errorHandler.ts";
+import deserializeAdmin from "./admin/middlewares/deserializeadmin.middlewares";
+import { errorHandler } from "./utils/middleware/errorHandler";
 
 
 
@@ -42,14 +43,15 @@ app.set("trust proxy", true);
 
 
 //healthcheckroute
-app.get("/healthcheck", (_req:Request, res) => {
+app.get("/healthcheck", (_req: Request, res) => {
   res.send("Server healthcheck-status: running");
 });
 
 // Routes
-app.use('/company',companyRoutes());
-app.use('/plan',planRoutes());
-app.use('/admin',adminRoutes());
+app.use('/company', companyRoutes());
+app.use('/plan', planRoutes());
+app.use('/admin', adminRoutes());
+app.use('/',userRouter)
 
 
 app.use(errorHandler)

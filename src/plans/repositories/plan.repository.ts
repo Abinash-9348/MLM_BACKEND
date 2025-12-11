@@ -1,4 +1,4 @@
-import { prisma } from "../../../db/prisma";
+import { prisma } from "../../../db/connectDB";
 import { Prisma } from "@prisma/client";
 
 export class PlanRepository {
@@ -38,19 +38,19 @@ export class PlanRepository {
   }
 
   async findByNameForCompany(name: string, companyId: number) {
-   
-  return prisma.plan.findFirst({
-    where: {
-      name,
-      companyId
-    }
-  });
-}
+
+    return prisma.plan.findFirst({
+      where: {
+        name,
+        companyId
+      }
+    });
+  }
 
   async findCompanyById(id: number) {
-  return prisma.company.findUnique({
-    where: { id },
-  });
-}
+    return prisma.company.findUnique({
+      where: { id },
+    });
+  }
 
 }

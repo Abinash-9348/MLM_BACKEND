@@ -1,4 +1,4 @@
-import { prisma } from "../../../db/prisma";
+import { prisma } from "../../../db/connectDB";
 import { Prisma } from "@prisma/client";
 
 export class AdminSessionRepository {

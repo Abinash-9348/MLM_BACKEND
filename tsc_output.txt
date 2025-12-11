@@ -1,0 +1,15 @@
+src/admin/GeneralSetting/repo/generalSetting.repo.ts(1,24): error TS2307: Cannot find module '../../config/db' or its corresponding type declarations.
+src/admin/services/session.service.ts(35,53): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/Users/controller/user.controller.ts(15,34): error TS7006: Parameter 'd' implicitly has an 'any' type.
+src/Users/midleware/user.auth.ts(2,34): error TS2307: Cannot find module '../../utility/jwt' or its corresponding type declarations.
+src/Users/repo/user.repo.ts(1,24): error TS2307: Cannot find module './../../config/db' or its corresponding type declarations.
+src/Users/repo/user.repo.ts(2,34): error TS2307: Cannot find module '../../utility/getUserId' or its corresponding type declarations.
+src/Users/validation/user.validate.ts(1,17): error TS2307: Cannot find module 'joi' or its corresponding type declarations.
+src/utils/appError.ts(3,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/utils/appError.ts(4,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/utils/appError.ts(5,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/utils/appSuccess.ts(3,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/utils/appSuccess.ts(4,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/utils/appSuccess.ts(5,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/utils/appSuccess.ts(6,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.

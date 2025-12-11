@@ -1,12 +1,12 @@
-import {loadEnv} from './loadEnv.ts';
+import { loadEnv } from './loadEnv';
 const env = loadEnv();
 
 const stagconfig = {
   MODE: env.MODE,
   PORT: env.PORT,
   DB_URL: env.DB_URL,
-  DB_NAME:env.DB_NAME,
-  DB_PASS:env.DB_PASS,
+  DB_NAME: env.DB_NAME,
+  DB_PASS: env.DB_PASS,
   SALT_WORK_FACTOR: env.SALT_WORK_FACTOR,
   ACCESS_TOKEN_TTL: env.ACCESS_TOKEN_TTL,
   REFRESH_TOKEN_TTL: env.REFRESH_TOKEN_TTL,
